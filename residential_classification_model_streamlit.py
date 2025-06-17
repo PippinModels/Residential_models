@@ -23,7 +23,7 @@ client = gspread.authorize(creds)
 # Access Google Sheet
 spreadsheet_id = "1TwOzGlLAM-lvw2NUTxc5hZhwk4uLI6BRfLD83ttDfHc"
 sheet = client.open_by_key(spreadsheet_id)
-summary_sheet = sheet.worksheet("All-predictions")
+summary_sheet = sheet.worksheet("All_predictions")
 
 # Load data
 data = summary_sheet.get_all_records()
