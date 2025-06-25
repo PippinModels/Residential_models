@@ -90,7 +90,7 @@ if not df.empty:
                 range_key = (lo, hi)
                 if range_key not in seen_ranges:
                     seen_ranges.add(range_key)
-                    option_text = f"${lo:,}" if lo == hi else f"${lo:,} - ${hi:,}"
+                    option_text =  f"${lo:,}" if lo == hi else f"${lo:,} – ${hi:,}"
                     formatted_options[option_text] = (label, desc, lo, hi)
 
             st.session_state.prediction_choices = formatted_options
