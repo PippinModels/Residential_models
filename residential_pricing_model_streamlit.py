@@ -133,7 +133,10 @@ if "prediction_choices" in st.session_state and st.session_state.prediction_choi
     """, unsafe_allow_html=True)
     selected_text = st.radio(
         "Choose range:",
-        options=sorted(list(st.session_state.prediction_choices.keys()), key=lambda x: int(x.strip('$').split('–')[0].replace(',', '').strip())) + ["Other (Enter manually)"],
+        options = sorted(
+            list(st.session_state.prediction_choices.keys()),
+            key=lambda x: int(x.strip('$').split('–' if '–' in x else '-')[0].replace(',', '').strip())
+            ) + ["Other (Enter manually)"],
         index=None,
         label_visibility="collapsed"
     )
