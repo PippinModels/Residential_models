@@ -66,7 +66,7 @@ product_hierarchy = {
 
 }
 
-st.title("Residential Pricing Model )")
+st.title("Residential Pricing Model")
 st.markdown("**Disclaimer:** Predicted pricing is based on a single parcel search.")
 
 
