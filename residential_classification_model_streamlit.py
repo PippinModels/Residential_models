@@ -14,15 +14,6 @@ import json
 from oauth2client.service_account import ServiceAccountCredentials
 from googleapiclient.discovery import build
 
-
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-json_key = st.secrets["google_sheets"]["json_key"]
-service_account_info = json.loads(json_key)
-creds = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, scope)
-client = gspread.authorize(creds)
-
-
-
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 json_key = st.secrets["google_sheets"]["json_key"]
 service_account_info = json.loads(json_key)
@@ -33,7 +24,7 @@ client = gspread.authorize(creds)
 folder_id = "1ydabvUbRIbooOImZuSDV7doxUhOIldzP" 
 
 # Build Google Drive service
-drive_service = build("drive", "v3", credentials=creds)
+drive_service = build("drive", "v3", credentials=creds,cache_discovery=False)
 
 # Query for the latest Google Sheet in the folder
 query = f"'{folder_id}' in parents and trashed = false and mimeType='application/vnd.google-apps.spreadsheet'"
@@ -58,7 +49,7 @@ sheet = client.open_by_key(spreadsheet_id)
 try:
     summary_sheet = sheet.worksheet("All_predictions")
 except gspread.exceptions.WorksheetNotFound:
-    st.error("'Summary Sheet' not found in the latest file.")
+    st.error("'All_predictions' not found in the latest file.")
     st.stop()
 
 
